@@ -32,7 +32,7 @@ console.log("Keys: ", Object.keys(theSimpsons));
 // * Object.values(),
 console.log("Values: ", Object.values(theSimpsons));
 
-// * Object.create(), uses an existing an existing object to frame out a new object, we use a variable to store the base of the object creation 
+// * Object.create(), uses an existing object to frame out a new object, we use a variable to store the base of the object creation 
 
 const futurama = Object.create(theSimpsons);
 // console.log(futurama);
