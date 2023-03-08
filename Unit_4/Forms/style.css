@@ -1,10 +1,13 @@
+/* https://www.transparenttextures.com/ */
 body {
     display: grid;
     grid-template: repeat(8, 12.5%) / repeat(4, 25%);
     height: 100vh;
     margin: 0;
     overflow-y: hidden;
-    background-color: gainsboro;
+    /* background-color: gainsboro; */
+    background-color: #00ed8e;
+background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
 }
 
 /* HEADER */
