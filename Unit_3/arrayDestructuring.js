@@ -31,7 +31,7 @@ console.log(firstName, lastName); // Will Mashrick
 
 const myName = ["Will", "Mashrick"];
 
-const copiedName = [...myName]; // The spread operator interts the elements from fullName
+const copiedName = [...myName]; // The spread operator inserts the elements from fullName
 console.log("Copied w/ spread operator:", copiedName); // Copied w/ spread operator: [ 'Will', 'Mashrick' ]
 
 const anotherCopy = [fullName]; // This inserts the array as a whole
