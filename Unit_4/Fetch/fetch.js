@@ -183,7 +183,7 @@ function fetchFellowship() {
 
       // Used a for/of loop to cycle through the array
       for (m of members) {
-        log(m); // logs each memeber object
+        log(m); // logs each member object
         log(m.name);
       }
     });
