@@ -1,13 +1,17 @@
 # Getting Started
-- create a `package.json` 
+
+- create a `package.json`
   - In terminal: cli command: `npm init -y`
 - Install our dependencies
   - express: `npm i express`
 - Create a `.gitignore` file
+
   - `/node_modules` within .gitignore
+
     - tells our local repository to ignore the `node_modules` folder when backing up.
 
     - node_modules folder
+
   - Provides us access to any "behind the scenes" code that helps run express and any dependencies.
   - If anything gets deleted or you're cloning down a project, use `npm intall` to get those files back/installed.
 
@@ -18,14 +22,14 @@
   - Create a root JS file
   - `app.js` or `index.js`
 
-  - Use the command `nodemon` to start the server
-        - nodemon is a way for our server to continue to run while we are building/making changes.
-        - To stop the server ctrl+c
+  - Use the command `nodemon` to start the server - nodemon is a way for our server to continue to run while we are building/making changes. - To stop the server ctrl+c
 
 ## Controllers
+
 Our controllers help us set routes for various endpoints. Depending on how we build the path will determine how it responds.
 
 CRUD (Create, Read, Update, Delete)
+
 - Create: POST
 - Read: GET
 - Update: PUT/ PATCH
@@ -47,13 +51,19 @@ Sending a status code with a response is good practice for both the user and dev
 ---
 
 ## Preparing our server to handle JSON objects
+
 In our `app.js` we need to have this line of code:
+
 ```js
 app.use(express.json());
 ```
+
 This provides us access JSON files throughout our routes.
 
+---
+
 ## MVC
+
 - Stands for Model View Controller
 - Architecture pattern (structure in which they are written/coded) that helps our Separation of Concerns
 - Model: Database schematic, the blueprint for our data (we dictate what created data looks like/its datatype)
@@ -61,3 +71,12 @@ This provides us access JSON files throughout our routes.
   - Application that interface with the server.
 - Controller: Part of the server application which handles logic. (How we build our logic within the server, we code and create what routes can be used and what they do.)
 
+---
+
+## Middleware
+
+- A function that accesses the request and response
+- Has a call stack
+  - request
+  - response
+  - next
