@@ -108,4 +108,75 @@ router.post("/", (req, res) => {
   }
 });
 
+// TODO: Updated (PUT)
+
+/* 
+    - pass ID value as a param, /:id (id will become parameter name used inside the logic)
+    - iterate through options (look through the db contents, comes back as an array)
+    - check if id matches param (if else or other conditional check)
+    - reassign the db at the index to what come from body. (take the request body and edit/replace the "incorrect" wrong object we want to change)
+    - save file (means using fs.writeFile to update and save the whole json file/object)
+
+    * stretch goal: update just the data without modifying the ID
+
+    [x] start the route and add the param string 
+    [x] build skeleton try/catch
+    [x] try is success response, grab the param
+    [] Create logic that uses an array method to find and match the param to a db item: forEach
+    [x] First I need fs to read the file with .readFile (ya gotta read the file before you can do anything to the contents)
+*/
+
+router.put("/:id", (req, res) => {
+  try {
+    // const { id } = req.params;
+    // console.log(id, typeof id);
+
+    const id = Number(req.params.id);
+    // console.log(id, typeof id);
+
+    // The new values coming in with/via the request
+    const todo = req.body;
+
+    fs.readFile("./helpers/db.json", (err, data) => {
+      // All the logic I want to build after fs reads the json
+      if (err) throw err;
+
+      const db = JSON.parse(data);
+
+      // declare a result var to assign to later
+      let result;
+
+      // Using forEach method to find and then replace the item that matches the param id
+      db.forEach((e, i) => {
+        console.log(e, i);
+
+        // If the object/item's id match the param, we do something
+        if (e.id === id) {
+          // In the if: when match is found we want to be able to replace/overwrite/edit the object to the new values
+          // assign the object to todo(req.body): grabbing the item at it's array index and reassigning it's values to what we passed in via the request body(todo var)
+          db[i] = todo;
+          // Reassign/assign result var the todo var as well (so the response has what the new object content is)
+          result = todo;
+
+          fs.writeFile("./helpers/db.json", JSON.stringify(db), (err) =>
+            console.log(err)
+          );
+        }
+      });
+
+      // whatever you're testing ? (this runs if true, 200) : (this runs if false, 404/500)
+      result
+        ? res.status(200).json({
+            status: `ID: ${id} was successfully updated.`,
+            object: result,
+          })
+        : res.status(404).json({ status: `ID: ${id} was not found.` });
+    });
+  } catch (err) {
+    res.status(500).json({
+      error: err.message,
+    });
+  }
+});
+
 module.exports = router;
