@@ -1,6 +1,1 @@
-[
-  {},
-  { "id": 2, "item": "Take out the trash" },
-  { "id": 3, "item": "Get cookies" },
-  { "id": 4, "item": "Vacuum" }
-]
+[{}, { "id": 2, "item": "Take out the trash" }, { "id": 4, "item": "Vacuum" }]

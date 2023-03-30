@@ -122,7 +122,7 @@ router.post("/", (req, res) => {
     [x] start the route and add the param string 
     [x] build skeleton try/catch
     [x] try is success response, grab the param
-    [] Create logic that uses an array method to find and match the param to a db item: forEach
+    [x] Create logic that uses an array method to find and match the param to a db item: forEach
     [x] First I need fs to read the file with .readFile (ya gotta read the file before you can do anything to the contents)
 */
 
@@ -171,6 +171,49 @@ router.put("/:id", (req, res) => {
             object: result,
           })
         : res.status(404).json({ status: `ID: ${id} was not found.` });
+    });
+  } catch (err) {
+    res.status(500).json({
+      error: err.message,
+    });
+  }
+});
+
+// TODO: Delete a task
+/* 
+    - pass ID as a param, Numberified it: const id = Number(req.params.id);
+    - read file, fs.readFile()
+    - filter to match the param value
+        - return what doesn't match
+    - write to file, fs.writeFile()
+
+*/
+
+router.delete("/:id", (req, res) => {
+  try {
+    const id = Number(req.params.id);
+
+    fs.readFile("./helpers/db.json", (err, data) => {
+      if (err) throw err;
+
+      // Takes the JSON content from the file location, parses it out into a plain array with normal JS objects instead of JSON objects
+      const db = JSON.parse(data);
+
+      // declare a var that holds and does all the sorting/filtering logic.
+      const filteredDB = db.filter((e) => {
+        // we want to check for the id... and return only what doesn't match
+        if (e.id !== id) {
+          return e;
+        }
+      });
+
+      fs.writeFile("./helpers/db.json", JSON.stringify(filteredDB), (err) =>
+        console.log(err)
+      );
+
+      res.status(200).json({
+        status: `ID: ${id} was successfully deleted.`,
+      });
     });
   } catch (err) {
     res.status(500).json({
