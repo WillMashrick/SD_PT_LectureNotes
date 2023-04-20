@@ -4,7 +4,7 @@ const User = require("../models/user.model");
 
 /* 
   Require in the bcrypt dependency by storing it in a variable. 
-  Bcrypt will be included in our controller --> add bcrypt in any file where we want encyption to take place. 
+  Bcrypt will be included in our controller --> add bcrypt in any file where we want encryption to take place. 
 */
 
 const bcrypt = require("bcrypt");

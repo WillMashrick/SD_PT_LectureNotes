@@ -10,6 +10,8 @@ const log = console.log;
 
 const users = require("./controllers/user.controller");
 
+const movies = require("./controllers/movie.controller");
+
 // Require in the mongoose middleware, pulled/used from node_modules
 const mongoose = require("mongoose");
 // Create variable for our connection address variable from the .env
@@ -37,5 +39,7 @@ app.use(express.json());
 // ------------------- Routes to Controllers ------------------------
 // http://localhost:4000/user
 app.use("/user", users);
+// http://localhost:4000/movies
+app.use("/movies", movies);
 
 app.listen(PORT, () => log(`Movie Server on Port: ${PORT}`));
