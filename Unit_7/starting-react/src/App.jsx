@@ -4,7 +4,8 @@ import "./App.css";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import AboutMe from "./components/aboutMe/AboutMe";
-
+import Employees from "./components/employeeInformation/Employees";
+import PresidentVotes from "./components/Presidents/PresidentVotes";
 // This is a Functional Component: it is declared with the function keyword, the name of the func is the component name(Capitalized/PascalCase)
 function App() {
   // Functional Components have a single return
@@ -14,6 +15,8 @@ function App() {
       {/* To use an imported component: it gets written as a self closing tag. */}
       <Header />
       <AboutMe />
+      <Employees />
+      <PresidentVotes />
       <Footer />
     </div>
   );
