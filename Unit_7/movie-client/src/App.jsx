@@ -1,6 +1,8 @@
 import "./App.css";
 import Auth from "./components/auth/Auth";
 import MovieIndex from "./components/movie/MovieIndex";
+import MovieEdit from "./components/movie/MovieEdit";
+import Logout from "./components/auth/logout/Logout";
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
@@ -8,7 +10,8 @@ function App() {
   // Use useState to house token
   const [sessionToken, setSessionToken] = useState("");
 
-  // console.log("App.jsx:", sessionToken);
+  console.log("App.jsx:", sessionToken);
+
   const updateToken = (newToken) => {
     localStorage.setItem("token", newToken);
     // ^ .setItem(key, value)
@@ -23,12 +26,17 @@ function App() {
   }, []);
 
   // Create routing using the Routes tag with the Route tags holding the individual components/view
-
+  // Add Logout so it is visible only when there *IS* a sessionToken
   return (
     <div className="App">
+      {sessionToken !== "" ? <Logout setToken={setSessionToken} /> : null}
       <Routes>
         <Route path="/" element={<Auth updateToken={updateToken} />} />
-        <Route path="/movie" element={<MovieIndex />} />
+        <Route path="/movie" element={<MovieIndex token={sessionToken} />} />
+        <Route
+          path="/movie/update/:id"
+          element={<MovieEdit token={sessionToken} />}
+        />
       </Routes>
     </div>
   );
